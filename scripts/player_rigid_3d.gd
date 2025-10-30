@@ -3,9 +3,9 @@ extends RigidBody3D
 
 
 @export var max_ground_speed: float = 3
-@onready var ground_cast: ShapeCast3D = $GroundCast
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var model: Node3D = $HumanM_BasicMotionsFREE_2_6
+@onready var ground_cast: ShapeCast3D = $Sep/GroundCast
 
 
 var wish_dir := Vector3.ZERO
@@ -38,6 +38,9 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 		# Update animation blend parameters
 		animation_tree.set(blend_param, Vector2(state.linear_velocity.x, state.linear_velocity.z))
 	wish_dir = Vector3.ZERO
+
+func _physics_process(delta: float) -> void:
+	ground_cast.position = position
 
 func activate_ground_mode() -> void:
 	ground_move = true

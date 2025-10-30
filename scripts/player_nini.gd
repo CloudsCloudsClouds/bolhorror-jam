@@ -146,7 +146,6 @@ func _enter_state(s: STATE) -> void:
 			# Enter ragdoll / physics-driven behaviour
 			# e.g. player.enter_ragdoll()
 			player.deactivate_ground_mode()
-			pass
 		STATE.KICK:
 			# Perform kick: apply impulse / play animation
 			# e.g. player.apply_kick()
