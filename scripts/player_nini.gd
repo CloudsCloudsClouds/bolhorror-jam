@@ -1,15 +1,30 @@
 extends Node3D
 
 @onready var player: PlayerRigid3D = $PlayerRigid3D
-@onready var skeleton_3d: Skeleton3D = $PlayerRigid3D/HumanM_BasicMotionsFREE_2_6/Rig/Skeleton3D
 @onready var phantom_camera_3d: PhantomCamera3D = $PhantomCamera3D
 var bs2d := "parameters/BlendSpace2D/blend_position"
 
 enum STATE {
+	# Walking around and iddle. The usual
 	MOVEMENT,
-	THROW
+	# Ragdoll driven free fall, until velocity is near zero and we can regain control
+	THROW,
+	# Kick. You kick the player so it goes flying in mid air
+	# There is no jump here, it's a rage game!
+	# So kick is the only way to get up. Very... entrophic
+	KICK,
+	# Getting up from ragdoll state
+	GETTING_UP,
+	# Jumpscare. The player got caught by la cholita sin cabeza
+	# Of course there are jumpscares. This is a horror game!
+	# It plays an animation and then kicks the player in a random direction
+	# Possibly losing a ton of progress
+	# Very sad
+	# rip
+	JUMPSCARE,
 }
 
+# I might need a propper state machine
 var state: STATE = STATE.MOVEMENT
 
 func _ready() -> void:
@@ -18,12 +33,25 @@ func _ready() -> void:
 func _physics_process(_delta: float) -> void:
 	var wish_dir := Vector3.ZERO
 	var input_dir := Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
+	# If only there was a better name to describe a kick instead of a jump...
+	var wish_kick := Input.is_action_just_pressed("jump")
 
 	if state == STATE.MOVEMENT:
 		var input_rot := phantom_camera_3d.get_third_person_rotation().y
 		wish_dir = Vector3(input_dir.x, 0, input_dir.y).rotated(Vector3.UP, input_rot)
 		wish_dir = wish_dir.normalized()
 		player.wish_dir = wish_dir
+
+		# Check if is on floor. If not, change state to THROW
+		if not player.is_on_floor:
+			state = STATE.THROW
+			return
+		
+		# Check for wishing to kick input
+		if wish_kick:
+			state = STATE.KICK
+			return
+	
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
