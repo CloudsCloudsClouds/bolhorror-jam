@@ -2,7 +2,9 @@ extends Node3D
 
 @onready var player: PlayerRigid3D = $PlayerRigid3D
 @onready var phantom_camera_3d: PhantomCamera3D = $PhantomCamera3D
+@onready var arrow: CSGCombiner3D = $PlayerRigid3D/Arrow
 var bs2d := "parameters/BlendSpace2D/blend_position"
+
 
 enum STATE {
 	# Walking around and iddle. The usual
@@ -40,7 +42,7 @@ enum STATE {
 
 # Simple state machine helpers
 signal state_changed(old_state, new_state)
-var state: STATE = STATE.MOVEMENT
+var state: STATE = STATE.THROW
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -63,6 +65,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	change_state(STATE.MOVEMENT)
 
 func _physics_process(_delta: float) -> void:
 	run_state_machine(_delta)
@@ -124,7 +127,8 @@ func _enter_state(s: STATE) -> void:
 			# Regain player control
 			# e.g. stop ragdoll, enable input processing, reset timers
 			# player.exit_ragdoll()  # implement on PlayerRigid3D if needed
-			pass
+			arrow.visible = false
+			print_debug("Entered MOVEMENT state")
 		STATE.THROW:
 			# Enter ragdoll / physics-driven behaviour
 			# e.g. player.enter_ragdoll()

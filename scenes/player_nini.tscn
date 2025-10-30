@@ -32,3 +32,19 @@ follow_distance = 3.0
 spring_length = 3.0
 
 [node name="PlayerRigid3D" parent="." instance=ExtResource("2_n42p7")]
+
+[node name="Arrow" type="CSGCombiner3D" parent="PlayerRigid3D"]
+calculate_tangents = false
+
+[node name="Body" type="CSGCylinder3D" parent="PlayerRigid3D/Arrow"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.501, 0)
+radius = 0.06298828
+height = 1.0
+smooth_faces = false
+
+[node name="Point" type="CSGCylinder3D" parent="PlayerRigid3D/Arrow"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+radius = 0.16357422
+height = 0.50357056
+cone = true
+smooth_faces = false
