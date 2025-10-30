@@ -10,18 +10,23 @@ enum STATE {
 	MOVEMENT,
 	THROW
 }
+
 var state: STATE = STATE.MOVEMENT
 
 func _ready() -> void:
 	player.axis_lock_angular_x = true
 	player.axis_lock_angular_z = true
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func _physics_process(_delta: float) -> void:
+	var wish_dir := Vector3.ZERO
+	var input_dir := Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
+	
 	if Input.is_action_pressed("move_forward"):
-		pass
+		player.wish_dir = -phantom_camera_3d.transform.basis.z.normalized()
 	if Input.is_action_pressed("move_backward"):
-		pass
+		player.wish_dir = phantom_camera_3d.transform.basis.z.normalized()
 	if Input.is_action_pressed("move_left"):
-		pass
+		player.wish_dir = -phantom_camera_3d.transform.basis.x.normalized()
 	if Input.is_action_pressed("move_right"):
-		pass
+		player.wish_dir = phantom_camera_3d.transform.basis.x.normalized()
