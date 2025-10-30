@@ -69,7 +69,6 @@ func _physics_process(_delta: float) -> void:
 
 
 func run_state_machine(_delta: float) -> void:
-	print( "Player State: %s" % state_name(state) )
 	match state:
 		STATE.MOVEMENT:
 			var wish_dir := Vector3.ZERO
@@ -84,7 +83,8 @@ func run_state_machine(_delta: float) -> void:
 			player.wish_dir = wish_dir
 
 			# Check if is on floor. If not, change state to THROW
-			# Bugged
+			# For free fall
+			# BUG: This is bugged. Sometimes is_on_floor is false even when on floor
 			"""
 			if not player.is_on_floor:
 				change_state(STATE.THROW)

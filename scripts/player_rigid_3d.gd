@@ -35,6 +35,7 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 
 		# Check if still on floor
 		# Contact count is set in 3 because sometimes idiot player gets into a corner
+		# FIXME: This is bugged. Sometimes is_on_floor is false even when on floor
 		for i in state.get_contact_count():
 			var contact_normal := state.get_contact_local_normal(i)
 			# BUG: This works. But only if the floor contact is the last one on the for
