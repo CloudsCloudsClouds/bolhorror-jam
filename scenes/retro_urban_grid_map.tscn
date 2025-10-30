@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dseefx3ugfduh"]
+
+[ext_resource type="MeshLibrary" uid="uid://bduthrrfiul5f" path="res://assets/kenney_retro-urban-kit/retro-urban-meshlib.tres" id="1_wq4i6"]
+
+[node name="RetroUrbanGridMap" type="GridMap"]
+mesh_library = ExtResource("1_wq4i6")
+cell_size = Vector3(1, 1, 1)
