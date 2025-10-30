@@ -21,7 +21,7 @@ metadata/_editor_floor_ = Vector3(0, 4, 0)
 
 [node name="Detail" parent="." instance=ExtResource("2_oeifi")]
 data = {
-"cells": PackedInt32Array(6, 2, 27, 4, 65525, 65, 3, 65525, 65, 2, 65525, 65, 1, 65525, 63)
+"cells": PackedInt32Array(6, 2, 27, 4, 65525, 65, 3, 65525, 65, 2, 65525, 65, 1, 65525, 63, 0, 65525, 63, 5, 65525, 63, 6, 65525, 63)
 }
 
 [node name="Decor" parent="." instance=ExtResource("2_oeifi")]
