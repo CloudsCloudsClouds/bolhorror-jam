@@ -72,6 +72,10 @@ disable_install_audio_busses=true
 disable_update_check=false
 disable_install_wizard=true
 
+[physics]
+
+common/physics_interpolation=true
+
 [raytraced_audio]
 
 reverb_bus=&"RaytracedReverb"
