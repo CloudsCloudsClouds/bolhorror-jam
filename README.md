@@ -1,5 +1,9 @@
 # Bol Horror Jam
-Project de la unifranz.
+Project de la unifranz. Los Pepinos Enterrados
+
+- Daniel Bernal
+- Esteban Ledezma
+- Fabricio Alvarez
 
 Este projecto utiliza godot 4.5.stable
 
@@ -13,6 +17,15 @@ git lfs pull
 ```
 
 Si no, entonces no se descargara los archivos pesados (imagenes, modelos 3d, musica) y el projecto estara roto.
+
+A menos que estes trabajando en tu propia rama, recuerda constantemente usar
+
+```
+git pull
+git lfs pull
+```
+
+¡Hazlo todo el rato en main!
 
 ## Creditos
 Muchos assets de kenney!
