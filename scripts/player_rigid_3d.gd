@@ -1,6 +1,7 @@
 class_name PlayerRigid3D
 extends RigidBody3D
 
+
 @export var max_ground_speed: float = 3
 
 var wish_dir := Vector3.ZERO
@@ -48,3 +49,9 @@ func activate_ground_mode() -> void:
 	axis_lock_angular_x = true
 	axis_lock_angular_z = true
 	axis_lock_angular_y = true
+
+func deactivate_ground_mode() -> void:
+	ground_move = false
+	axis_lock_angular_x = false
+	axis_lock_angular_z = false
+	axis_lock_angular_y = false

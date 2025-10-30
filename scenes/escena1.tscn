@@ -38,4 +38,4 @@ light_energy = 2.649
 shadow_enabled = true
 
 [node name="PlayerNini" parent="." instance=ExtResource("3_oeifi")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9464239, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.46787763, 0)
