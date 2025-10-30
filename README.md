@@ -13,3 +13,11 @@ git lfs pull
 ```
 
 Si no, entonces no se descargara los archivos pesados (imagenes, modelos 3d, musica) y el projecto estara roto.
+
+## Creditos
+Muchos assets de kenney!
+
+Plugins de:
+- https://github.com/Maaack/Godot-Game-Template
+- https://github.com/whoStoleMyCoffee/raytraced-audio/
+- https://github.com/ramokz/phantom-camera
