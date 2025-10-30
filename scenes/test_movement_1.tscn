@@ -5,3 +5,14 @@
 [node name="TestMovement1" type="Node3D"]
 
 [node name="PlayerNini" parent="." instance=ExtResource("1_tfdok")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9703741, 0)
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5975485, -0.55458117, 1.1751931)
+size = Vector3(10.431, 1, 13.721436)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.137652, -0.60925573, 0.780935, 0, 0.7884404, 0.6151112, -0.99048066, -0.08467128, 0.108530395, 0, 1.4240038, 0)
