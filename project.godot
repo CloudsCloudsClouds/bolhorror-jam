@@ -29,7 +29,7 @@ project/assembly_name="BolHorrorJam"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/maaacks_game_template/plugin.cfg", "res://addons/phantom_camera/plugin.cfg")
+enabled=PackedStringArray("res://addons/maaacks_game_template/plugin.cfg", "res://addons/phantom_camera/plugin.cfg", "res://addons/raytraced_audio/plugin.cfg")
 
 [gui]
 
@@ -44,3 +44,8 @@ locale/translations=PackedStringArray("res://addons/maaacks_game_template/base/t
 disable_install_audio_busses=true
 disable_update_check=false
 disable_install_wizard=true
+
+[raytraced_audio]
+
+reverb_bus=&"RaytracedReverb"
+ambient_bus=&"RaytracedAmbient"
