@@ -15,12 +15,12 @@ func _ready() -> void:
 	activate_ground_mode()
 
 func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
+	state.linear_velocity += wish_dir
 	if ground_move:
 		# Move getting the direction from the player
-		state.linear_velocity += wish_dir
+		
 		if not state.linear_velocity.is_zero_approx() and wish_dir != Vector3.ZERO:
 			model.rotation.y = lerp_angle(model.rotation.y, atan2(-wish_dir.x, -wish_dir.z), 0.1)
-		wish_dir = Vector3.ZERO
 
 		# Limit ground speed
 		var horizontal_velocity := Vector3(state.linear_velocity.x, 0, state.linear_velocity.z)
@@ -44,6 +44,8 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 				is_on_floor = true
 				return
 			is_on_floor = false
+		
+	wish_dir = Vector3.ZERO
 
 func activate_ground_mode() -> void:
 	ground_move = true

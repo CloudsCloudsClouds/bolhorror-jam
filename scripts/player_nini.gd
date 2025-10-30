@@ -101,10 +101,25 @@ func run_state_machine(_delta: float) -> void:
 				return
 		STATE.THROW:
 			# Ragdoll state
-			pass
+			# Monitor velocity and if near zero and on floor, change to GETTING_UP
+			var lin_vel := player.linear_velocity
+			var speed = lin_vel.length()
+			# BUG: Sometimes is_on_floor is false even when on floor
+			if speed < 0.5 and player.is_on_floor:
+				change_state(STATE.GETTING_UP)
+				return
 		STATE.KICK:
 			# Kicking state
-			pass
+			# TODO: For the moment, nothing too special, just apply a great force and go to THROW state
+			var wish_dir := Vector3.FORWARD
+			wish_dir.y = 0.5
+			wish_dir = wish_dir.normalized()
+			var input_rot := phantom_camera_3d.get_third_person_rotation().y
+			wish_dir = wish_dir.rotated(Vector3.UP, input_rot)
+			player.wish_dir = wish_dir * 20.0  # Big impulse
+			change_state(STATE.THROW)
+
+
 		STATE.GETTING_UP:
 			# Getting up state
 			pass
@@ -132,6 +147,7 @@ func _enter_state(s: STATE) -> void:
 		STATE.THROW:
 			# Enter ragdoll / physics-driven behaviour
 			# e.g. player.enter_ragdoll()
+			player.deactivate_ground_mode()
 			pass
 		STATE.KICK:
 			# Perform kick: apply impulse / play animation
