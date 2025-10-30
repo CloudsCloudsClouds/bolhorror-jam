@@ -17,7 +17,11 @@ Si no, entonces no se descargara los archivos pesados (imagenes, modelos 3d, mus
 ## Creditos
 Muchos assets de kenney!
 
+Modelo humano de prototipo de 
+https://kevdev.itch.io/basic-motions-free
+
 Plugins de:
 - https://github.com/Maaack/Godot-Game-Template
 - https://github.com/whoStoleMyCoffee/raytraced-audio/
 - https://github.com/ramokz/phantom-camera
+- 
