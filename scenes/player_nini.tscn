@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dvabenwmu11fc"]
+[gd_scene load_steps=7 format=3 uid="uid://dvabenwmu11fc"]
 
 [ext_resource type="Script" uid="uid://c4b4jxsgpw3i0" path="res://scripts/player_nini.gd" id="1_40ann"]
 [ext_resource type="PackedScene" uid="uid://5bx4n14taoqs" path="res://scenes/player_rigid_3d.tscn" id="2_n42p7"]
@@ -6,49 +6,11 @@
 [ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="3_n42p7"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="4_yhqiu"]
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jfiiq"]
-animation = &"HumanM_Walk01_Forward"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_40ann"]
-animation = &"HumanM_Walk01_Right"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_iw25d"]
-animation = &"HumanM_Walk01_Backward"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qowg5"]
-animation = &"HumanM_Walk01_Left"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xpoom"]
-animation = &"HumanM_Idle01"
-
-[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_xpoom"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_jfiiq")
-blend_point_0/pos = Vector2(0, 1)
-blend_point_1/node = SubResource("AnimationNodeAnimation_40ann")
-blend_point_1/pos = Vector2(1, 0)
-blend_point_2/node = SubResource("AnimationNodeAnimation_iw25d")
-blend_point_2/pos = Vector2(0, -1)
-blend_point_3/node = SubResource("AnimationNodeAnimation_qowg5")
-blend_point_3/pos = Vector2(-1, 0)
-blend_point_4/node = SubResource("AnimationNodeAnimation_xpoom")
-blend_point_4/pos = Vector2(0, 0)
-sync = true
-
-[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_n42p7"]
-graph_offset = Vector2(-417.1914, 42.226563)
-nodes/BlendSpace2D/node = SubResource("AnimationNodeBlendSpace2D_xpoom")
-nodes/BlendSpace2D/position = Vector2(-40, 40)
-node_connections = [&"output", 0, &"BlendSpace2D"]
-
 [sub_resource type="Resource" id="Resource_blyhg"]
 script = ExtResource("4_yhqiu")
 
 [node name="PlayerNini" type="Node3D"]
 script = ExtResource("1_40ann")
-
-[node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource("AnimationNodeBlendTree_n42p7")
-parameters/BlendSpace2D/blend_position = Vector2(0.0015997887, -0.00046503544)
 
 [node name="Camera3D" type="Camera3D" parent="."]
 physics_interpolation_mode = 1

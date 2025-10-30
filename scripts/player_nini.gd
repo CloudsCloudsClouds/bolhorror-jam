@@ -26,7 +26,7 @@ func _physics_process(_delta: float) -> void:
 	if state == STATE.MOVEMENT:
 		var input_rot := phantom_camera_3d.get_third_person_rotation().y
 		wish_dir = Vector3(input_dir.x, 0, input_dir.y).rotated(Vector3.UP, input_rot)
-		wish_dir = wish_dir.normalized() * 0.5
+		wish_dir = wish_dir.normalized()
 		player.wish_dir = wish_dir
 
 		animation_tree.set(bs2d, Vector2(input_dir.x, input_dir.y))
