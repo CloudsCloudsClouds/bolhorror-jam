@@ -16,6 +16,9 @@ var is_on_floor := func () -> bool:
 	ground_cast.force_shapecast_update()
 	return ground_cast.is_colliding()
 
+
+var trying_to_get_up := false
+
 func _ready() -> void:
 	activate_ground_mode()
 
@@ -37,9 +40,24 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 		
 		# Update animation blend parameters
 		animation_tree.set(blend_param, Vector2(state.linear_velocity.x, state.linear_velocity.z))
+	elif !ground_move and not trying_to_get_up:
+		# Just stop rotation a bit
+		state.angular_velocity *= 0.98
+	elif trying_to_get_up:
+		# Holy this is systems of control
+		# KISS. Just lerp and get this over
+		state.angular_velocity = Vector3.ZERO
+		rotation.x = lerp_angle(rotation.x, 0.0, 0.05)
+		rotation.z = lerp_angle(rotation.x, 0.0, 0.05)
+		
+		# see if close enough
+		if abs(rotation.x) <= deg_to_rad(1) and abs(rotation.z) <= deg_to_rad(1):
+			rotation.x = 0
+			rotation.z = 0
+			activate_ground_mode()
 	wish_dir = Vector3.ZERO
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	ground_cast.position = position
 
 func activate_ground_mode() -> void:
@@ -47,6 +65,7 @@ func activate_ground_mode() -> void:
 	axis_lock_angular_x = true
 	axis_lock_angular_z = true
 	axis_lock_angular_y = true
+	trying_to_get_up = false
 
 func deactivate_ground_mode() -> void:
 	ground_move = false

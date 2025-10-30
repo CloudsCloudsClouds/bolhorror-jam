@@ -87,7 +87,6 @@ func run_state_machine(_delta: float) -> void:
 
 			# Check if is on floor. If not, change state to THROW
 			# For free fall
-			
 			if not player.is_on_floor:
 				change_state(STATE.THROW)
 				return
@@ -120,7 +119,11 @@ func run_state_machine(_delta: float) -> void:
 
 		STATE.GETTING_UP:
 			# Getting up state
-			pass
+			# Keeping it fun, restore the correct rotation of the rigid body by pushing forces
+			# And when close enough to upright, go to MOVEMENT state
+			if player.ground_move == true:
+				change_state(STATE.MOVEMENT)
+				return
 		STATE.JUMPSCARE:
 			# Jumpscare state
 			pass
@@ -141,7 +144,6 @@ func _enter_state(s: STATE) -> void:
 			# e.g. stop ragdoll, enable input processing, reset timers
 			# player.exit_ragdoll()  # implement on PlayerRigid3D if needed
 			arrow.visible = false
-			print_debug("Entered MOVEMENT state")
 		STATE.THROW:
 			# Enter ragdoll / physics-driven behaviour
 			# e.g. player.enter_ragdoll()
@@ -152,7 +154,8 @@ func _enter_state(s: STATE) -> void:
 			pass
 		STATE.GETTING_UP:
 			# Play getting up animation, block input until done
-			pass
+			print_debug("Going up...\nGoing UuuUUuuUup...\nIt just is\nIt just is")
+			player.trying_to_get_up = true
 		STATE.JUMPSCARE:
 			# Play jumpscare animation + effects
 			pass
