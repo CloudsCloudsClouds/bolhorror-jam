@@ -29,6 +29,9 @@ git lfs pull
 
 ## Creditos
 Muchos assets de kenney!
+Assets para ciudad 
+(https://www.kenney.nl/assets/retro-urban-kit) 
+
 
 Modelo humano de prototipo de 
 https://kevdev.itch.io/basic-motions-free
