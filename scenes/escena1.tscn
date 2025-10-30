@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://c454h1ophrvcc"]
+[gd_scene load_steps=5 format=3 uid="uid://hdgmmy0apdme"]
 
 [ext_resource type="Script" uid="uid://dkb8ltjc6067n" path="res://addons/raytraced_audio/raytraced_audio_player_3d.gd" id="1_gwh4g"]
 [ext_resource type="PackedScene" uid="uid://dseefx3ugfduh" path="res://scenes/retro_urban_grid_map.tscn" id="2_oeifi"]
