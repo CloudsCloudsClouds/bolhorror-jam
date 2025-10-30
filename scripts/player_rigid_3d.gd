@@ -3,13 +3,18 @@ extends RigidBody3D
 
 
 @export var max_ground_speed: float = 3
+@onready var ground_cast: ShapeCast3D = $GroundCast
+@onready var animation_tree: AnimationTree = $AnimationTree
+@onready var model: Node3D = $HumanM_BasicMotionsFREE_2_6
+
 
 var wish_dir := Vector3.ZERO
-@onready var model: Node3D = $HumanM_BasicMotionsFREE_2_6
 var ground_move := true
-@onready var animation_tree: AnimationTree = $AnimationTree
 var blend_param := "parameters/BlendSpace2D/blend_position"
-var is_on_floor := false
+# Lambda time!
+var is_on_floor := func () -> bool:
+	ground_cast.force_shapecast_update()
+	return ground_cast.is_colliding()
 
 func _ready() -> void:
 	activate_ground_mode()
@@ -32,19 +37,6 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 		
 		# Update animation blend parameters
 		animation_tree.set(blend_param, Vector2(state.linear_velocity.x, state.linear_velocity.z))
-
-		# Check if still on floor
-		# Contact count is set in 3 because sometimes idiot player gets into a corner
-		# FIXME: This is bugged. Sometimes is_on_floor is false even when on floor
-		for i in state.get_contact_count():
-			var contact_normal := state.get_contact_local_normal(i)
-			# BUG: This works. But only if the floor contact is the last one on the for
-			# is_on_floor = contact_normal.dot(Vector3.UP) > 0.9
-			if contact_normal.dot(Vector3.UP) > 0.9:
-				is_on_floor = true
-				return
-			is_on_floor = false
-		
 	wish_dir = Vector3.ZERO
 
 func activate_ground_mode() -> void:

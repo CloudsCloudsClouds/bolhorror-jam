@@ -87,12 +87,11 @@ func run_state_machine(_delta: float) -> void:
 
 			# Check if is on floor. If not, change state to THROW
 			# For free fall
-			# BUG: This is bugged. Sometimes is_on_floor is false even when on floor
-			"""
+			
 			if not player.is_on_floor:
 				change_state(STATE.THROW)
 				return
-			"""
+			
 			# TODO: Maybe the player should have a dedicated button for throwing themselves to the ground? To activate the ragdoll. For the fun of it
 			
 			# Check for wishing to kick input
@@ -104,7 +103,6 @@ func run_state_machine(_delta: float) -> void:
 			# Monitor velocity and if near zero and on floor, change to GETTING_UP
 			var lin_vel := player.linear_velocity
 			var speed = lin_vel.length()
-			# BUG: Sometimes is_on_floor is false even when on floor
 			if speed < 0.5 and player.is_on_floor:
 				change_state(STATE.GETTING_UP)
 				return
