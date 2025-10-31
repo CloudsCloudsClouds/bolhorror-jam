@@ -64,7 +64,7 @@ func _physics_process(delta: float) -> void:
 			visible = false
 		STATE.WATCHING:
 			# Just standing there, watching
-			$CollisionShape3D.disabled = true
+			$CollisionShape3D.disabled = false
 			visible = true
 			rotation.y = lerp_angle(rotation.y, atan2(
 				follow_player.global_transform.origin.x - global_transform.origin.x,
@@ -74,7 +74,7 @@ func _physics_process(delta: float) -> void:
 			# Following the player
 			# (!!)
 			visible = true
-			$CollisionShape3D.disabled = true
+			$CollisionShape3D.disabled = false
 			var direction := (follow_player.player.global_transform.origin - global_transform.origin).normalized()
 			global_transform.origin += direction * move_speed * delta
 
