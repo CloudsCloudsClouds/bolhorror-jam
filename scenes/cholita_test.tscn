@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://mmhdkypwi8v4"]
+[gd_scene load_steps=6 format=3 uid="uid://mmhdkypwi8v4"]
 
 [ext_resource type="PackedScene" uid="uid://dseefx3ugfduh" path="res://scenes/retro_urban_grid_map.tscn" id="1_ow4xn"]
 [ext_resource type="PackedScene" uid="uid://dvabenwmu11fc" path="res://scenes/player_nini.tscn" id="2_ob7kd"]
+[ext_resource type="PackedScene" uid="uid://dh518v2lw82w4" path="res://scenes/cholita_sin_cabeza.tscn" id="3_ob7kd"]
 
 [sub_resource type="Environment" id="Environment_w3r4n"]
 background_mode = 1
@@ -55,3 +56,7 @@ data = {
 
 [node name="PlayerNini" parent="." instance=ExtResource("2_ob7kd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0808828, 0)
+
+[node name="CholitaSinCabeza" parent="." node_paths=PackedStringArray("follow_player") instance=ExtResource("3_ob7kd")]
+follow_player = NodePath("../PlayerNini")
+move_speed = 5.0

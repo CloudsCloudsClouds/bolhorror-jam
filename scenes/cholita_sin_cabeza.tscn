@@ -4,13 +4,15 @@
 [ext_resource type="PackedScene" uid="uid://dew4ylt0ttosd" path="res://assets/cholita_sin_cabez/CholitaSinCabeza.blend" id="1_ob0as"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ob0as"]
+size = Vector3(2.055725, 1.7736816, 1)
 
 [node name="CholitaSinCabeza" type="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.37211108, 0)
 script = ExtResource("1_jiwsn")
 
 [node name="CholitaSinCabeza" parent="." instance=ExtResource("1_ob0as")]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+transform = Transform3D(-8.742278e-09, 0, -0.2, 0, 0.2, 0, 0.2, 0, -8.742278e-09, 0, 0.36660576, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.19857562, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.026947021, 0.51168597, 0)
 shape = SubResource("BoxShape3D_ob0as")
