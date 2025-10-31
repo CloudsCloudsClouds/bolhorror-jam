@@ -1,0 +1,68 @@
+[gd_scene load_steps=12 format=3 uid="uid://dh518v2lw82w4"]
+
+[ext_resource type="Script" uid="uid://bd0ohjuvcuxgb" path="res://scripts/cholita_sin_cabeza.gd" id="1_jiwsn"]
+[ext_resource type="PackedScene" uid="uid://dew4ylt0ttosd" path="res://assets/cholita_sin_cabez/CholitaSinCabeza.blend" id="1_ob0as"]
+[ext_resource type="Texture2D" uid="uid://43nm5m8p0crv" path="res://assets/kenney_particle-pack/PNG (Transparent)/smoke_04.png" id="3_22fj7"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ob0as"]
+size = Vector3(2.055725, 1.7736816, 1)
+
+[sub_resource type="Gradient" id="Gradient_bwqtt"]
+offsets = PackedFloat32Array(0, 0.78408897, 1)
+colors = PackedColorArray(0.70848274, 0.70848274, 0.70848274, 1, 1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_rnh08"]
+gradient = SubResource("Gradient_bwqtt")
+
+[sub_resource type="Curve" id="Curve_16ic4"]
+_data = [Vector2(0, 0.9024817), 0.0, 0.0, 0, 0, Vector2(0.16935974, 1), 0.0, 0.0, 0, 0, Vector2(0.7591654, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.7627298), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_onorp"]
+curve = SubResource("Curve_16ic4")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0wsov"]
+angle_min = 1.0728835e-05
+angle_max = 720.0
+direction = Vector3(0, 1, 0)
+angular_velocity_min = -28.190016
+angular_velocity_max = 45.049984
+gravity = Vector3(0, 0.1, 0)
+scale_curve = SubResource("CurveTexture_onorp")
+color_ramp = SubResource("GradientTexture1D_rnh08")
+hue_variation_min = -2.2351742e-08
+hue_variation_max = 0.029999977
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f41vr"]
+transparency = 3
+alpha_hash_scale = 1.0
+alpha_antialiasing_mode = 0
+blend_mode = 2
+albedo_texture = ExtResource("3_22fj7")
+albedo_texture_force_srgb = true
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_hpjmx"]
+material = SubResource("StandardMaterial3D_f41vr")
+
+[node name="CholitaSinCabeza" type="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.37211108, 0)
+script = ExtResource("1_jiwsn")
+
+[node name="CholitaSinCabeza" parent="." instance=ExtResource("1_ob0as")]
+transform = Transform3D(-8.742278e-09, 0, -0.2, 0, 0.2, 0, 0.2, 0, -8.742278e-09, 0, 0.36660576, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.026947021, 0.51168597, 0)
+shape = SubResource("BoxShape3D_ob0as")
+disabled = true
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5439508, 0)
+lifetime = 2.0
+process_material = SubResource("ParticleProcessMaterial_0wsov")
+draw_pass_1 = SubResource("QuadMesh_hpjmx")

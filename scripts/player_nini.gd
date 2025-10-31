@@ -1,3 +1,4 @@
+class_name PlayerNini
 extends Node3D
 
 @onready var player: PlayerRigid3D = $PlayerRigid3D
