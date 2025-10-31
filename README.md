@@ -31,9 +31,12 @@ git lfs pull
 Muchos assets de kenney!
 Assets para ciudad 
 (https://www.kenney.nl/assets/retro-urban-kit) 
+Assets para particulas
+https://www.kenney.nl/assets/particle-pack
 
+Cholita sin cabeza de elaboracion propia (Daniel Bernal)
 
-Modelo humano de prototipo de 
+Modelo humano de prototipo
 https://kevdev.itch.io/basic-motions-free
 
 Plugins de:
