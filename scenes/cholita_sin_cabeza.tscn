@@ -1,8 +1,8 @@
 [gd_scene load_steps=12 format=3 uid="uid://dh518v2lw82w4"]
 
-[ext_resource type="Script" uid="uid://bd0ohjuvcuxgb" path="res://scripts/cholita_sin_cabeza.gd" id="1_jiwsn"]
-[ext_resource type="PackedScene" uid="uid://dew4ylt0ttosd" path="res://assets/cholita_sin_cabez/CholitaSinCabeza.blend" id="1_ob0as"]
+[ext_resource type="Script" path="res://scripts/cholita_sin_cabeza.gd" id="1_jiwsn"]
 [ext_resource type="Texture2D" uid="uid://43nm5m8p0crv" path="res://assets/kenney_particle-pack/PNG (Transparent)/smoke_04.png" id="3_22fj7"]
+[ext_resource type="PackedScene" uid="uid://bd0hjtulr4wvl" path="res://assets/cholita_sin_cabez/CholitaSinCabeza.glb" id="3_bwqtt"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ob0as"]
 size = Vector3(2.055725, 1.7736816, 1)
@@ -53,9 +53,6 @@ material = SubResource("StandardMaterial3D_f41vr")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.37211108, 0)
 script = ExtResource("1_jiwsn")
 
-[node name="CholitaSinCabeza" parent="." instance=ExtResource("1_ob0as")]
-transform = Transform3D(-8.742278e-09, 0, -0.2, 0, 0.2, 0, 0.2, 0, -8.742278e-09, 0, 0.36660576, 0)
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.026947021, 0.51168597, 0)
 shape = SubResource("BoxShape3D_ob0as")
@@ -66,3 +63,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5439508, 0)
 lifetime = 2.0
 process_material = SubResource("ParticleProcessMaterial_0wsov")
 draw_pass_1 = SubResource("QuadMesh_hpjmx")
+
+[node name="CholitaSinCabeza2" parent="." instance=ExtResource("3_bwqtt")]
+transform = Transform3D(-8.742278e-09, 0, -0.2, 0, 0.2, 0, 0.2, 0, -8.742278e-09, 0, 0.36699998, 0)

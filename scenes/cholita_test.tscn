@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://mmhdkypwi8v4"]
+[gd_scene load_steps=6 format=3 uid="uid://bpr5j8xc86hg8"]
 
 [ext_resource type="PackedScene" uid="uid://dseefx3ugfduh" path="res://scenes/retro_urban_grid_map.tscn" id="1_ow4xn"]
 [ext_resource type="PackedScene" uid="uid://dvabenwmu11fc" path="res://scenes/player_nini.tscn" id="2_ob7kd"]
