@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://dh518v2lw82w4"]
+
+[ext_resource type="Script" uid="uid://bd0ohjuvcuxgb" path="res://scripts/cholita_sin_cabeza.gd" id="1_jiwsn"]
+[ext_resource type="PackedScene" uid="uid://dew4ylt0ttosd" path="res://assets/cholita_sin_cabez/CholitaSinCabeza.blend" id="1_ob0as"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ob0as"]
+
+[node name="CholitaSinCabeza" type="Area3D"]
+script = ExtResource("1_jiwsn")
+
+[node name="CholitaSinCabeza" parent="." instance=ExtResource("1_ob0as")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.19857562, 0)
+shape = SubResource("BoxShape3D_ob0as")
