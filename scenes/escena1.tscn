@@ -488,7 +488,7 @@ light_energy = 2.5
 light_size = 6.0
 
 [node name="OmniLight3D2" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.0614476, 3.4577646, -8.6226845)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.0614476, 7.914402, -7.5157223)
 light_color = Color(1, 0.6901961, 0.41568628, 1)
 light_energy = 2.5
 light_size = 6.0
