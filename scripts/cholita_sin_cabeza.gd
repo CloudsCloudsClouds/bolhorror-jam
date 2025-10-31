@@ -35,7 +35,7 @@ func _ready() -> void:
 	
 
 	wait_timer.connect("timeout", func () -> void:
-		position = follow_player.global_transform.origin + Vector3(
+		position = follow_player.player.global_transform.origin + Vector3(
 			spawn_distance + randf() * spawn_variance,
 			0,
 			spawn_distance + randf() * spawn_variance
@@ -48,7 +48,7 @@ func _ready() -> void:
 	)
 
 	connect("body_entered", func (_body: Node) -> void:
-		if _body == follow_player:
+		if _body == follow_player.player:
 			get_tree().reload_current_scene()
 	)
 
@@ -57,13 +57,14 @@ func _physics_process(delta: float) -> void:
 		STATE.DESPAWNED:
 			# Hiding. Doing nothing
 			visible = false
+			$CollisionShape3D.disabled = true
 		STATE.WAITING:
 			# Waiting to spawn
-			print_debug(wait_timer.time_left)
+			$CollisionShape3D.disabled = false
 			visible = false
 		STATE.WATCHING:
-			print_debug("I'm looking at you")
 			# Just standing there, watching
+			$CollisionShape3D.disabled = true
 			visible = true
 			rotation.y = lerp_angle(rotation.y, atan2(
 				follow_player.global_transform.origin.x - global_transform.origin.x,
@@ -73,13 +74,14 @@ func _physics_process(delta: float) -> void:
 			# Following the player
 			# (!!)
 			visible = true
-			var direction := (follow_player.global_transform.origin - global_transform.origin).normalized()
+			$CollisionShape3D.disabled = true
+			var direction := (follow_player.player.global_transform.origin - global_transform.origin).normalized()
 			global_transform.origin += direction * move_speed * delta
 
+
 func watch_player_state(_old_state, new_state) -> void:
-	print_debug("I got called!")
 	if new_state == PlayerNini.STATE.MOVEMENT:
 		state = STATE.WAITING
-		wait_timer.start(1)
+		wait_timer.start(5 + randf() * 5)
 	elif new_state == PlayerNini.STATE.THROW:
 		state = STATE.DESPAWNED
