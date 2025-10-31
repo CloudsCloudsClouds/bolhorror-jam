@@ -1,9 +1,18 @@
-[gd_scene load_steps=25 format=3 uid="uid://c454h1ophrvcc"]
+[gd_scene load_steps=26 format=3 uid="uid://c454h1ophrvcc"]
 
 [ext_resource type="Script" uid="uid://dkb8ltjc6067n" path="res://addons/raytraced_audio/raytraced_audio_player_3d.gd" id="1_gwh4g"]
 [ext_resource type="PackedScene" uid="uid://dseefx3ugfduh" path="res://scenes/retro_urban_grid_map.tscn" id="2_oeifi"]
 [ext_resource type="PackedScene" uid="uid://dvabenwmu11fc" path="res://scenes/player_nini.tscn" id="3_oeifi"]
 [ext_resource type="PackedScene" uid="uid://dh518v2lw82w4" path="res://scenes/cholita_sin_cabeza.tscn" id="4_oyxhj"]
+
+[sub_resource type="GDScript" id="GDScript_oyxhj"]
+script/source = "extends Node3D
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventKey:
+		if event.keycode == KEY_ESCAPE:
+			get_tree().change_scene_to_file(\"res://scenes/main.tscn\")
+"
 
 [sub_resource type="Animation" id="Animation_2ummr"]
 length = 0.001
@@ -379,7 +388,7 @@ _data = {
 }
 
 [node name="Node3D" type="Node3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.369683, 0)
+script = SubResource("GDScript_oyxhj")
 
 [node name="PM3" parent="." instance=ExtResource("2_oeifi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.856535, 28.611946, 5.054118)
